@@ -27,8 +27,8 @@ class Palletefy implements PalleteBase {
 
   @override
   Color textColor(ThemeModeType themeModeType) {
-    const Color lightPhase = Color(0xff2A2B36);
-    const Color darkPhase = Color(0xffF5F5F5);
+    const Color lightPhase = Color(0xffFFFFFF);
+    const Color darkPhase = Color(0xffFFFFFF);
     return _handleLogic(themeModeType, lightPhase, darkPhase);
   }
 
@@ -99,7 +99,7 @@ class Palletefy implements PalleteBase {
 
   @override
   Color iconColor(ThemeModeType themeModeType) {
-    const Color lightPhase = Color(0xff2A2B36);
+    const Color lightPhase = Color(0xffA7A7A7);
     const Color darkPhase = Colors.white;
     return _handleLogic(themeModeType, lightPhase, darkPhase);
   }
