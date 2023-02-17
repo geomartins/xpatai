@@ -9,6 +9,7 @@ abstract class PalleteBase {
   Color successColor(ThemeModeType themeModeType);
   Color buttonColor(ThemeModeType themeModeType);
   Color appBarColor(ThemeModeType themeModeType);
+  Color drawerColor(ThemeModeType themeModeType);
   Color bottomNavigationBarColor(ThemeModeType themeModeType);
   Color textFieldBorderColor(ThemeModeType themeModeType);
   Color textFieldFillColor(ThemeModeType themeModeType);

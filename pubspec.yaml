@@ -96,9 +96,9 @@ flutter:
     - assets/images/appicon/
 
   fonts:
-    - family: Schyler
+    - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-VariableFont_slnt,wght.ttf
+        - asset: assets/fonts/Inter-ExtraLight.ttf
 
   #   - family: Trajan Pro
   #     fonts:

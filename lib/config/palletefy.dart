@@ -43,10 +43,9 @@ class Palletefy implements PalleteBase {
   Color appBarColor(ThemeModeType themeModeType) {
     switch (themeModeType) {
       case ThemeModeType.lightMode:
-        return const Color(0xfffbfcff)
-            .withOpacity(0.98); //const Color(0xffF5F5F5);
+        return const Color(0xff100D38); //const Color(0xffF5F5F5);
       case ThemeModeType.darkMode:
-        return const Color(0xff2A2B36);
+        return const Color(0xff100D38);
       default:
         return const Color(0xfffbfcff).withOpacity(0.98);
     }
@@ -85,8 +84,8 @@ class Palletefy implements PalleteBase {
 
   @override
   Color containerColor(ThemeModeType themeModeType) {
-    const Color lightPhase = Colors.white; //Colors.grey.withOpacity(0.1)
-    Color darkPhase = const Color(0xffF5F5F5).withOpacity(0.05);
+    const Color lightPhase = Color(0xff100D38); //Colors.grey.withOpacity(0.1)
+    Color darkPhase = Color(0xff100D38);
     return _handleLogic(themeModeType, lightPhase, darkPhase);
   }
 
@@ -101,6 +100,14 @@ class Palletefy implements PalleteBase {
   Color iconColor(ThemeModeType themeModeType) {
     const Color lightPhase = Color(0xffA7A7A7);
     const Color darkPhase = Colors.white;
+    return _handleLogic(themeModeType, lightPhase, darkPhase);
+  }
+  //#050231
+
+  @override
+  Color drawerColor(ThemeModeType themeModeType) {
+    const Color lightPhase = Color(0xff050231);
+    const Color darkPhase = Color(0xff050231);
     return _handleLogic(themeModeType, lightPhase, darkPhase);
   }
 

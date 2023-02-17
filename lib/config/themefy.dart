@@ -9,9 +9,9 @@ import 'palletefy.dart';
 class Themefy extends Object with Palletefy {
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
-      fontFamily: 'RobotoFlex',
+      fontFamily: 'Inter',
       textTheme: Theme.of(context).textTheme.apply(
-            fontFamily: 'RobotoFlex',
+            fontFamily: 'Inter',
             bodyColor: Palletefy().textColor(ThemeModeType.lightMode),
           ),
 
@@ -105,9 +105,9 @@ class Themefy extends Object with Palletefy {
 
   static ThemeData darkTheme(BuildContext context) {
     return ThemeData(
-      fontFamily: 'RobotoFlex',
+      fontFamily: 'Inter',
       textTheme: Theme.of(context).textTheme.apply(
-            fontFamily: 'RobotoFlex',
+            fontFamily: 'Inter',
             bodyColor: Palletefy().textColor(ThemeModeType.darkMode),
           ),
 
