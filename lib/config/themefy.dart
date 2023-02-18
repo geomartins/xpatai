@@ -1,3 +1,4 @@
+import 'package:gradient_borders/gradient_borders.dart';
 import 'package:xpatai/config/enumefy.dart';
 import 'package:xpatai/utils/session.dart';
 import 'package:flutter/material.dart';
@@ -51,34 +52,37 @@ class Themefy extends Object with Palletefy {
         fillColor: Palletefy().textFieldFillColor(ThemeModeType.lightMode),
         filled: true,
         errorMaxLines: 3,
-        labelStyle: const TextStyle(fontSize: 15),
+        labelStyle: TextStyle(
+            fontSize: 15,
+            color: Palletefy().textColor(ThemeModeType.systemMode)),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Palletefy().textFieldBorderColor(ThemeModeType.lightMode),
-            width: 1.0,
-          ),
+        enabledBorder: GradientOutlineInputBorder(
+          gradient: LinearGradient(colors: [
+            Color(0xff4388DD),
+            Color(0xffFF4581),
+          ]),
+          width: 1,
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         ),
         errorStyle: TextStyle(
             color: Palletefy().errorColor(ThemeModeType.lightMode),
             overflow: TextOverflow.ellipsis),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Palletefy().textFieldBorderColor(ThemeModeType.lightMode),
-            width: 1.0,
-          ),
+        border: GradientOutlineInputBorder(
+          gradient: LinearGradient(colors: [
+            Color(0xff4388DD),
+            Color(0xffFF4581),
+          ]),
+          width: 1,
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Palletefy().textFieldBorderColor(ThemeModeType.lightMode),
-            width: 1.0,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(5.0),
-          ),
+        focusedBorder: GradientOutlineInputBorder(
+          gradient: LinearGradient(colors: [
+            Color(0xff4388DD),
+            Color(0xffFF4581),
+          ]),
+          width: 1,
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         ),
       ),
       colorScheme: ColorScheme(

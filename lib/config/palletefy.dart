@@ -7,7 +7,7 @@ class Palletefy implements PalleteBase {
   @override
   Color scaffoldColor(ThemeModeType themeModeType) {
     const Color lightPhase = Color(0xff050231);
-    const Color darkPhase = Colors.white; //Color(0xff2A2B36);
+    const Color darkPhase = Color(0xff050231); //Color(0xff2A2B36);
     return _handleLogic(themeModeType, lightPhase, darkPhase);
   }
 
@@ -77,8 +77,8 @@ class Palletefy implements PalleteBase {
 
   @override
   Color textFieldFillColor(ThemeModeType themeModeType) {
-    const Color lightPhase = Color(0xfffbfcff);
-    Color darkPhase = const Color(0xffF5F5F5).withOpacity(0.05);
+    const Color lightPhase = Color(0xff050231);
+    Color darkPhase = Color(0xff050231).withOpacity(0.05);
     return _handleLogic(themeModeType, lightPhase, darkPhase);
   }
 

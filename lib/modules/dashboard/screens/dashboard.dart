@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:xpatai/config/enumefy.dart';
+import 'package:xpatai/modules/dashboard/screens/profile.dart';
 import 'package:xpatai/widgets/app_bar_widget.dart';
 import 'package:xpatai/widgets/gradient_icon_widget.dart';
 import '../../../config/palletefy.dart';
@@ -65,6 +66,9 @@ class Dashboard extends GetView<DashboardController> with Keyboard, Palletefy {
                       color: iconColor(ThemeModeType.systemMode),
                       size: 25,
                     ),
+                    onTap: () {
+                      Get.toNamed(Profile.id);
+                    },
                     title: Text(
                       'Profile',
                       style: TextStyle(
