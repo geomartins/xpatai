@@ -49,6 +49,8 @@ dependencies:
   gradient_borders: ^1.0.0
   persistent_bottom_nav_bar: ^5.0.2
   bottom_navy_bar: ^6.0.0
+  textfield_tags: ^2.0.2
+  super_tag_editor: ^0.0.3+4
 
 dev_dependencies:
   flutter_test:

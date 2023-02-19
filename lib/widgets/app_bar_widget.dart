@@ -51,7 +51,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               style: TextStyle(
                   color: textColor ??
                       Palletefy().textColor(ThemeModeType.systemMode),
-                  fontSize: 18)),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600)),
       centerTitle: centerTitle,
       // leading: Builder(
       //   builder: (BuildContext context) {
