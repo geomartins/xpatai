@@ -51,6 +51,8 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   textfield_tags: ^2.0.2
   super_tag_editor: ^0.0.3+4
+  chat_bubbles: ^1.4.0
+  bubble: ^1.2.1
 
 dev_dependencies:
   flutter_test:
