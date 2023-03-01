@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:xpatai/modules/dashboard/controllers/profile_controller.dart';
 import '../../../abstracts/controller_base.dart';
 import '../../../utils/validator_ext_utils.dart';
 
@@ -13,6 +14,8 @@ class DashboardController extends GetxController
 
   //STATE
   final _username = ''.obs;
+  final _profileController =
+      Get.put<ProfileController>(ProfileController()).obs;
   final _password = ''.obs;
   final _errors = {}.obs;
   final _togglePasswordVisibility = true.obs;
@@ -20,6 +23,7 @@ class DashboardController extends GetxController
   //GETTER
   String get username => _username.value;
   String get password => _password.value;
+  ProfileController get profileController => _profileController.value;
   bool get togglePasswordVisibility => _togglePasswordVisibility.value;
 
   dynamic getErrorText(value) {

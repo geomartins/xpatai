@@ -6,7 +6,9 @@ import 'package:xpatai/modules/dashboard/screens/profile.dart';
 import 'package:xpatai/widgets/app_bar_widget.dart';
 import 'package:xpatai/widgets/gradient_icon_widget.dart';
 import '../../../config/palletefy.dart';
+import '../../../utils/flex_utils.dart';
 import '../../../utils/keyboard_control.dart';
+import '../../../utils/notification_util.dart';
 import '../../../widgets/annotated_region_widget.dart';
 import '../../../widgets/bottom_navigation_bar_widget.dart';
 import '../../../widgets/elevated_button_widget.dart';
@@ -54,17 +56,30 @@ class ProfileModify extends GetView<ProfileController>
   Widget _buildEditProfileButtonField(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 55,
-          width: double.infinity,
-          child: ElevatedButtonWidget(
-            name: "Save Changes",
-            texColor: Colors.white,
-            onPressed: () {
-              Get.toNamed(Profile.id);
-            },
-          ),
-        ),
+        Obx(() => SizedBox(
+              height: 55,
+              width: double.infinity,
+              child: ElevatedButtonWidget(
+                name: "Save Changes",
+                texColor: Colors.white,
+                onPressed: controller.canSubmitForm(['name', 'email']) == true
+                    ? () async {
+                        try {
+                          removeFocus(context);
+                          FlexUtils.showLoadingOverlay(context);
+                          await controller.submit();
+                          NotificationUtil().showSuccessSnackbar(
+                              'Success', 'Profile Update Successful');
+                        } catch (e) {
+                          NotificationUtil()
+                              .showErrorSnackbar("Oops!!", e.toString());
+                        } finally {
+                          FlexUtils.hideLoadingOverlay(context);
+                        }
+                      }
+                    : null,
+              ),
+            )),
         SizedBox(height: 50),
       ],
     );
@@ -83,7 +98,10 @@ class ProfileModify extends GetView<ProfileController>
                   )),
               child: CircleAvatar(
                   radius: 25,
-                  child: Text('J', style: TextStyle(color: Colors.white)),
+                  child: Text(
+                      FlexUtils.getInitials(
+                          string: controller.displayName ?? "X", limitTo: 1),
+                      style: TextStyle(color: Colors.white)),
                   backgroundColor: Colors.transparent)),
           // leading: Container(
           //   decoration: BoxDecoration(
@@ -101,13 +119,13 @@ class ProfileModify extends GetView<ProfileController>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Jasper Kenneth",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              Obx(() => Text(
+                    "${controller.displayName ?? ""}",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )),
               Container(
                 margin: EdgeInsets.only(top: 5),
                 padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
@@ -147,11 +165,19 @@ class ProfileModify extends GetView<ProfileController>
                         color: textColor(ThemeModeType.systemMode)),
                   ),
                   SizedBox(height: 10),
-                  TextField(
-                      onChanged: (value) {},
+                  Obx(
+                    () => TextField(
+                      textInputAction: TextInputAction.done,
+                      controller: controller.nameTextEditingController,
+                      onChanged: (value) {
+                        controller.updateName(value);
+                      },
                       decoration: InputDecoration(
                         labelText: 'Name',
-                      )),
+                        errorText: controller.getErrorText('name'),
+                      ),
+                    ),
+                  ),
                 ],
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,11 +193,16 @@ class ProfileModify extends GetView<ProfileController>
                         color: textColor(ThemeModeType.systemMode)),
                   ),
                   SizedBox(height: 10),
-                  TextField(
-                      onChanged: (value) {},
+                  Obx(() => TextField(
+                      textInputAction: TextInputAction.done,
+                      controller: controller.emailTextEditingController,
+                      onChanged: (value) {
+                        controller.updateEmail(value);
+                      },
                       decoration: InputDecoration(
                         labelText: 'Email',
-                      )),
+                        errorText: controller.getErrorText('email'),
+                      ))),
                 ],
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

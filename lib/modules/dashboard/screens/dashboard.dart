@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xpatai/services/auth_service.dart';
 import 'package:xpatai/config/enumefy.dart';
 import 'package:xpatai/modules/dashboard/screens/profile.dart';
+import 'package:xpatai/utils/flex_utils.dart';
 import 'package:xpatai/widgets/app_bar_widget.dart';
 import 'package:xpatai/widgets/gradient_icon_widget.dart';
 import '../../../config/palletefy.dart';
@@ -36,7 +38,12 @@ class Dashboard extends GetView<DashboardController> with Keyboard, Palletefy {
                             )),
                         child: CircleAvatar(
                             radius: 25,
-                            child: Text('J',
+                            child: Text(
+                                FlexUtils.getInitials(
+                                    string: controller
+                                            .profileController.displayName ??
+                                        "X",
+                                    limitTo: 1),
                                 style: TextStyle(color: Colors.white)),
                             backgroundColor: Colors.transparent)),
                     // leading: Container(
@@ -51,13 +58,13 @@ class Dashboard extends GetView<DashboardController> with Keyboard, Palletefy {
                     //     child: Text("J"),
                     //   ),
                     // ),
-                    title: Text(
-                      "Jasper Kenneth",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    title: Obx(() => Text(
+                          controller.profileController.displayName ?? "",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )),
                   ),
                   SizedBox(height: 120),
                   ListTile(
@@ -96,6 +103,7 @@ class Dashboard extends GetView<DashboardController> with Keyboard, Palletefy {
                   ),
                   SizedBox(height: 10),
                   ListTile(
+                    onTap: () => AuthService().signOut(),
                     leading: Icon(
                       Icons.exit_to_app_outlined,
                       color: iconColor(ThemeModeType.systemMode),

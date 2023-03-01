@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xpatai.xpatai.xpatai">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="xpatai"
         android:name="${applicationName}"

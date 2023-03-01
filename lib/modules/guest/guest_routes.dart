@@ -7,9 +7,7 @@ import '../../middlewares/is_guest.dart';
 class GuestRoutes {
   static List<GetPage> all() {
     return [
-      GetPage(name: Welcome.id, page: () => const Welcome(), middlewares: [
-        IsGuest(priorityIndex: 3),
-      ]),
+      GetPage(name: Welcome.id, page: () => const Welcome()),
       GetPage(name: PageNotFound.id, page: () => const PageNotFound()),
     ];
   }

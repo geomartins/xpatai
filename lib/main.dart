@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:xpatai/config/bindefy.dart';
+import 'package:xpatai/services/auth_service.dart';
 import 'package:xpatai/translations/translations.dart';
 import 'package:xpatai/utils/keyboard_control.dart';
 import 'config/routefy.dart';
@@ -17,6 +20,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   FlutterNativeSplash.remove();
+  Firebase.initializeApp();
 
   await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(
@@ -51,7 +55,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver, Keyboard {
     super.didChangeAppLifecycleState(state);
     events.add(state.toString());
     setState(() {});
-    //print(state.toString());
   }
 
   @override
@@ -71,7 +74,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver, Keyboard {
     return GetMaterialApp(
       useInheritedMediaQuery: true,
       enableLog: true,
-      initialBinding: SessionBinding(),
       //locale: DevicePreview.locale(context),
       //builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
@@ -82,34 +84,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver, Keyboard {
       themeMode: Themefy.themeMode(context),
       theme: Themefy.lightTheme(context),
       defaultTransition: Routefy.defaultTransition,
-      initialRoute: Routefy.initial,
+      home: AuthService().handleAuthState(),
       getPages: Routefy.all(),
       unknownRoute: Routefy.unknownRoute,
+      initialBinding: Bindefy(),
     );
-  }
-}
-
-class SessionController extends GetxController {
-  //@state
-
-  final _isLoggedIn = false.obs;
-
-  //@getters
-  bool get isLoggedIn => _isLoggedIn.value;
-
-  //@mutation
-  void updateIsLoggedIn(bool value) => _isLoggedIn.value = value;
-}
-
-class SessionBinding extends Bindings {
-  @override
-  void dependencies() {
-    Get.put<SessionController>(SessionController());
   }
 }
 
 //TODO: https://javiercbk.github.io/json_to_dart/
 //TODO: https://www.figma.com/file/3A6TlYy9cXmuw6kK5NrOQ4/Defipay?node-id=135%3A182&t=mXZb8IijmVnFbofA-0
-//TODO:
-
-//TODO:

@@ -6,6 +6,7 @@ import 'package:xpatai/modules/dashboard/screens/profile_modify.dart';
 import 'package:xpatai/widgets/app_bar_widget.dart';
 import 'package:xpatai/widgets/gradient_icon_widget.dart';
 import '../../../config/palletefy.dart';
+import '../../../utils/flex_utils.dart';
 import '../../../utils/keyboard_control.dart';
 import '../../../widgets/annotated_region_widget.dart';
 import '../../../widgets/bottom_navigation_bar_widget.dart';
@@ -79,7 +80,10 @@ class Profile extends GetView<ProfileController> with Keyboard, Palletefy {
                   )),
               child: CircleAvatar(
                   radius: 25,
-                  child: Text('J', style: TextStyle(color: Colors.white)),
+                  child: Text(
+                      FlexUtils.getInitials(
+                          string: controller.displayName ?? "X", limitTo: 1),
+                      style: TextStyle(color: Colors.white)),
                   backgroundColor: Colors.transparent)),
           // leading: Container(
           //   decoration: BoxDecoration(
@@ -97,13 +101,13 @@ class Profile extends GetView<ProfileController> with Keyboard, Palletefy {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Jasper Kenneth",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              Obx(() => Text(
+                    "${controller.displayName ?? ""}",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )),
               Container(
                 margin: EdgeInsets.only(top: 5),
                 padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
@@ -115,11 +119,16 @@ class Profile extends GetView<ProfileController> with Keyboard, Palletefy {
                     width: 1,
                   ),
                 ),
-                child: Text(
-                  "edit photo",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(ProfileModify.id);
+                  },
+                  child: Text(
+                    "edit photo",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               )
@@ -142,7 +151,7 @@ class Profile extends GetView<ProfileController> with Keyboard, Palletefy {
               ListTile(
                 dense: true,
                 title: Text(
-                  'Jasper Kenneth',
+                  '${controller.displayName ?? ""}',
                   style: TextStyle(
                       color: textColor(ThemeModeType.systemMode),
                       fontSize: 17,
@@ -156,13 +165,13 @@ class Profile extends GetView<ProfileController> with Keyboard, Palletefy {
               SizedBox(height: 10),
               ListTile(
                 dense: true,
-                title: Text(
-                  'kennethjasperai@gmail.com',
-                  style: TextStyle(
-                      color: textColor(ThemeModeType.systemMode),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
-                ),
+                title: Obx(() => Text(
+                      '${controller.displayEmail ?? ""}',
+                      style: TextStyle(
+                          color: textColor(ThemeModeType.systemMode),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    )),
                 subtitle: Text('Email',
                     style: TextStyle(
                         color: textColor(ThemeModeType.systemMode),

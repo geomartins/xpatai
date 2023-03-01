@@ -54,6 +54,16 @@ class FlexUtils with Palletefy {
     // return NumberFormat('#,###,###,###').format(number);
   }
 
+  static String getInitials({required String string, required int limitTo}) {
+    var buffer = StringBuffer();
+    var split = string.split(' ');
+    for (var i = 0; i < (limitTo ?? split.length); i++) {
+      buffer.write(split[i][0]);
+    }
+
+    return buffer.toString();
+  }
+
   static String ucwords(String value) {
     return value.toTitleCase();
   }
@@ -86,6 +96,10 @@ class FlexUtils with Palletefy {
         isSafeAreaOverlay: true,
         isAppbarOverlay: true,
         isBottomBarOverlay: true,
+        progressIndicator: CircularProgressIndicator(
+            backgroundColor: Color(0xff4388DD).withOpacity(.8),
+            color: Color(0xffFF4581).withOpacity(.8)),
+
         // progressIndicator: AnimatedRotatingWidget(
         //     duration: const Duration(milliseconds: 1500),
         //     child: Image.asset(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:xpatai/services/auth_service.dart';
+import 'package:xpatai/utils/flex_utils.dart';
 import 'package:xpatai/widgets/outlined_button_widget.dart';
 import '../../../config/enumefy.dart';
 import '../../../config/palletefy.dart';
@@ -58,8 +60,17 @@ class Login extends StatelessWidget with Palletefy {
             texColor: Colors.white,
             enableImage: true,
             imageUrl: "assets/images/vectors/google_icon.png",
-            onPressed: () {
-              Get.toNamed(Dashboard.id);
+            onPressed: () async {
+              try {
+                FlexUtils.showLoadingOverlay(context);
+                await AuthService().signInWithGoogle();
+                Get.offNamed(Dashboard.id);
+              } catch (e) {
+                FlexUtils.hideLoadingOverlay(context);
+              } finally {
+                FlexUtils.hideLoadingOverlay(context);
+              }
+              //Get.toNamed(Dashboard.id);
             },
           ),
         )

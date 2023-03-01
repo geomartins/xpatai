@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653163645713",
+    "project_id": "xpat-cb87d",
+    "storage_bucket": "xpat-cb87d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653163645713:android:52ff91894b39301c115ab0",
+        "android_client_info": {
+          "package_name": "com.xpatai.xpatai.xpatai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653163645713-suuj70610r3vu2g76hsnn44sl56hlo2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaXjPX8IyzPWuKe0nGBD3bUfkIZLiOJVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653163645713-75mph4gcs8qvpfaidm3m706b9blsv3s1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
